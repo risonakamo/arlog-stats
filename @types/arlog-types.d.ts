@@ -11,3 +11,6 @@ interface LogRow extends LogRowExtracted
     luxDate:import("luxon").DateTime
     shortName:string
 }
+
+// log rows sorted by their short names
+type LogRowsByShortName=Record<string,LogRow[]>

@@ -48,12 +48,6 @@ function extractLogEntryInfo(entry:string):LogRowExtracted|null
 // attempt to reduce the name of a log entry's filename based on some specific rules.
 function simplifyName(fullname:string):string
 {
-    var extension:string=extname(fullname);
-    if (!(extension==".mkv" || extension==".mp4"))
-    {
-        return "<extension error>";
-    }
-
     var result=fullname.replace(/[\[\(].*?[\]\)]|\.mkv|\.mp4/g,"").replace(/[^\w]|\d/g,"").toLowerCase();
 
     if (!result.length)
