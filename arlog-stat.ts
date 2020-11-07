@@ -1,6 +1,7 @@
 import fs from "fs";
 import _ from "lodash";
 import chalk from "chalk";
+import table from "text-table";
 
 import {parseLogEntries} from "./logentry-processors";
 
@@ -14,6 +15,9 @@ const _combineNames:ShortNameMerge={
     ],
     "hentatsu":[
         "hentatsutv"
+    ],
+    "kandagawajetgirls":[
+        "kandagawajetgirlsend"
     ]
 };
 
@@ -40,9 +44,7 @@ function groupByShortName(entries:LogRow[],combineNames:ShortNameMerge={}):LogRo
         return x.shortName;
     });
 
-    console.log(chalk.yellow("unique shortnames:"));
-    console.log(_.keys(res).sort());
-    console.log();
+    printShortNames(res);
 
     return res;
 }
@@ -63,6 +65,25 @@ function activateShortnameMerge(combineNames:ShortNameMerge):ActivatedShortNameM
 
         return r;
     },{});
+}
+
+// print out unique shortnames of grouped log rows and the count of their log rows.
+function printShortNames(groupedLogs:LogRowsByShortName):void
+{
+    var tablerows:string[][]=_.map(groupedLogs,(x:LogRow[],i:string)=>{
+        return [
+            chalk.yellow(x.length.toString()), //count of items of this shortname
+            i //shortname
+        ];
+    });
+
+    tablerows=_.sortBy(tablerows,(x:string[])=>{
+        return x[1];
+    });
+
+    console.log(chalk.yellow("unique shortnames:"));
+    console.log(table(tablerows));
+    console.log();
 }
 
 main();
