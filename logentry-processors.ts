@@ -1,5 +1,6 @@
 import {extname} from "path";
 import _ from "lodash";
+import {DateTime} from "luxon";
 
 // parse array of log entries. removes all invalid rows.
 export function parseLogEntries(entries:string[]):LogRow[]
@@ -21,7 +22,8 @@ function parseLogEntry(entry:string):LogRow|null
 
     return {
         ...extractedInfo,
-        shortName:simplifyName(extractedInfo.fullName)
+        shortName:simplifyName(extractedInfo.fullName),
+        luxDate:DateTime.fromJSDate(new Date(extractedInfo.date))
     };
 }
 

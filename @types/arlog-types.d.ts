@@ -8,5 +8,6 @@ interface LogRowExtracted
 // object item representing a log row.
 interface LogRow extends LogRowExtracted
 {
+    luxDate:import("luxon").DateTime
     shortName:string
 }
