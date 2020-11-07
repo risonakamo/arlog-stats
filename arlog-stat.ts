@@ -8,7 +8,12 @@ import {parseLogEntries} from "./logentry-processors";
 const _targetFile:string="testlog.log";
 
 const _combineNames:ShortNameMerge={
-
+    "tsuujoukougekigazentaikougekidenikaikougekinookaasanwasukidesuka":[
+        "tsuujoukougekigazentaikougekidenikaikougekinookaasanwasukidesukaend"
+    ],
+    "hentatsu":[
+        "hentatsutv"
+    ]
 };
 
 function main():void
@@ -20,13 +25,17 @@ function main():void
     var groupedLogs:LogRowsByShortName=groupByShortName(logEntries,_combineNames);
 }
 
-// TODO: extend this to use shortname merging later.
 // group entries by their shortname.
 function groupByShortName(entries:LogRow[],combineNames:ShortNameMerge={}):LogRowsByShortName
 {
     var activatedcombinednames:ActivatedShortNameMerge=activateShortnameMerge(combineNames);
 
     var res:LogRowsByShortName=_.groupBy(entries,(x:LogRow)=>{
+        if (activatedcombinednames[x.shortName])
+        {
+            return activatedcombinednames[x.shortName];
+        }
+
         return x.shortName;
     });
 
