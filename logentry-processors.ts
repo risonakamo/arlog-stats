@@ -5,9 +5,11 @@ import {DateTime} from "luxon";
 // parse array of log entries. removes all invalid rows.
 export function parseLogEntries(entries:string[]):LogRow[]
 {
-    return _.filter(_.map(entries,(x:string)=>{
+    var parsedentries:LogRow[]=_.filter(_.map(entries,(x:string)=>{
         return parseLogEntry(x);
     })) as LogRow[];
+
+    return parsedentries.sort(sortLogRows);
 }
 
 // attempt to parse log entry into LogRow data. null if failed.
@@ -56,4 +58,10 @@ function simplifyName(fullname:string):string
     }
 
     return result;
+}
+
+// sort compare function for LogRow
+function sortLogRows(a:LogRow,b:LogRow):number
+{
+    return (a.luxDate as any)-(b.luxDate as any);
 }

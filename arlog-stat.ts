@@ -7,6 +7,7 @@ import {parseLogEntries} from "./logentry-processors";
 // path to log file to use
 const _targetFile:string="testlog.log";
 
+// shortnames to combine
 const _combineNames:ShortNameMerge={
     "tsuujoukougekigazentaikougekidenikaikougekinookaasanwasukidesuka":[
         "tsuujoukougekigazentaikougekidenikaikougekinookaasanwasukidesukaend"
