@@ -5,6 +5,7 @@ import table from "text-table";
 
 import {parseLogEntries} from "./logentry-processors";
 
+// --- CONFIG ---
 // path to log file to use
 const _targetFile:string="testlog.log";
 
@@ -21,17 +22,22 @@ const _combineNames:ShortNameMerge={
     ]
 };
 
+const _countThreshold=1;
+// --- END CONFIG ---
+
 function main():void
 {
     var logfile:string[]=fs.readFileSync(_targetFile,"utf8").split("\n");
 
     var logEntries:LogRow[]=parseLogEntries(logfile);
 
-    var groupedLogs:LogRowsByShortName=groupByShortName(logEntries,_combineNames);
+    var groupedLogs:LogRowsByShortName=groupByShortName(logEntries,_combineNames,_countThreshold);
 }
 
 // group entries by their shortname.
-function groupByShortName(entries:LogRow[],combineNames:ShortNameMerge={}):LogRowsByShortName
+// give the log rows to group, the combine names configuratoin, and a threshold which each group must meet in order
+// to be counted. keeps groups if greater than or equal to the threshold.
+function groupByShortName(entries:LogRow[],combineNames:ShortNameMerge={},countThreshold=0):LogRowsByShortName
 {
     var activatedcombinednames:ActivatedShortNameMerge=activateShortnameMerge(combineNames);
 
@@ -42,6 +48,10 @@ function groupByShortName(entries:LogRow[],combineNames:ShortNameMerge={}):LogRo
         }
 
         return x.shortName;
+    });
+
+    res=_.pickBy(res,(x:LogRow[])=>{
+        return x.length>=countThreshold;
     });
 
     printShortNames(res);
