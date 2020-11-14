@@ -12,14 +12,14 @@ const _targetFile:string="testlog.log";
 // shortnames to combine
 const _combineNames:ShortNameMerge={
     "tsuujoukougekigazentaikougekidenikaikougekinookaasanwasukidesuka":[
-        "tsuujoukougekigazentaikougekidenikaikougekinookaasanwasukidesukaend"
+        "tsuujoukougekigazentaikougekidenikaikougekinookaasanwasukidesukaend",
+        "tsuujoukougekigazentaikougekidenikaikougekinookaasanwasukidesukaova"
     ],
-    "hentatsu":[
-        "hentatsutv"
-    ],
-    "kandagawajetgirls":[
-        "kandagawajetgirlsend"
-    ]
+    "hentatsu":["hentatsutv"],
+    "kandagawajetgirls":["kandagawajetgirlsend"],
+    "nullpeta":["nullpetaova"],
+    "maesetsu":["maesetsuopeningact"],
+    "fragtime":["framearmsmovie"]
 };
 
 const _countThreshold=1;
@@ -32,6 +32,8 @@ function main():void
     var logEntries:LogRow[]=parseLogEntries(logfile);
 
     var groupedLogs:LogRowsByShortName=groupByShortName(logEntries,_combineNames,_countThreshold);
+
+    console.log(groupedLogs["lapisrelights"]);
 }
 
 // group entries by their shortname.
