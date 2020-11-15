@@ -12,6 +12,19 @@ interface LogRow extends LogRowExtracted
     shortName:string
 }
 
+// object item containing log row data for a single shortname and
+// stats associated.
+interface LogRowStats
+{
+    data:LogRow[]
+    count:number
+
+    averageGap:number
+    longestGap:number
+    timeSinceLast:number
+    totalTime:number
+}
+
 // log rows sorted by their short names
 type LogRowsByShortName=Record<string,LogRow[]>
 
