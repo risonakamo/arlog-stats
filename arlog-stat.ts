@@ -5,8 +5,7 @@ import {Duration} from "luxon";
 import {parseLogEntries} from "./processors/logentry-processors";
 import {groupByShortName} from "./processors/short-name-processors";
 
-import {maxGap} from "./stat-computers/max-gap";
-import {averageGap} from "./stat-computers/average-gap";
+import {averageGap,maxGap} from "./stat-computers/gap-calc";
 
 // --- CONFIG ---
 // path to log file to use
