@@ -1,8 +1,8 @@
 import fs from "fs";
 import _ from "lodash";
 
-import {parseLogEntries} from "./logentry-processors";
-import {groupByShortName} from "./short-name-processors";
+import {parseLogEntries} from "./processors/logentry-processors";
+import {groupByShortName} from "./processors/short-name-processors";
 
 // --- CONFIG ---
 // path to log file to use
