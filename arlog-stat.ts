@@ -5,7 +5,7 @@ import {Duration} from "luxon";
 import {parseLogEntries} from "./processors/logentry-processors";
 import {groupByShortName} from "./processors/short-name-processors";
 
-import {averageGap,maxGap} from "./stat-computers/gap-calc";
+import {averageGap,maxGap,longestGap} from "./stat-computers/gap-calc";
 
 // --- CONFIG ---
 // path to log file to use
@@ -14,14 +14,11 @@ const _targetFile:string="testlog.log";
 // shortnames to combine
 const _combineNames:ShortNameMerge={
     "tsuujoukougekigazentaikougekidenikaikougekinookaasanwasukidesuka":[
-        "tsuujoukougekigazentaikougekidenikaikougekinookaasanwasukidesukaend",
-        "tsuujoukougekigazentaikougekidenikaikougekinookaasanwasukidesukaova"
+        "tsuujoukougekigazentaikougekidenikaikougekinookaasanwasukidesukaend"
     ],
     "hentatsu":["hentatsutv"],
     "kandagawajetgirls":["kandagawajetgirlsend"],
-    "nullpeta":["nullpetaova"],
-    "maesetsu":["maesetsuopeningact"],
-    "fragtime":["framearmsmovie"]
+    "maesetsu":["maesetsuopeningact"]
 };
 
 const _countThreshold=1;
@@ -36,9 +33,10 @@ function main():void
     var groupedLogs:LogRowsByShortName=groupByShortName(logEntries,_combineNames,_countThreshold);
 
     // --- TESTING ---
-    var testshow:LogRow[]=groupedLogs["oshigabudoukanittekuretarashinu"];
-    console.log("max",maxGap(testshow).as("days"));
+    var testshow:LogRow[]=groupedLogs["tsuujoukougekigazentaikougekidenikaikougekinookaasanwasukidesuka"];
+    console.log("duration",maxGap(testshow).as("days"));
     console.log("average",averageGap(testshow).as("days"));
+    console.log("longest gap",longestGap(testshow).as("days"));
     // --- END TESTING ---
 }
 
