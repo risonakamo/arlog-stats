@@ -1,8 +1,12 @@
 import fs from "fs";
 import _ from "lodash";
+import {Duration} from "luxon";
 
 import {parseLogEntries} from "./processors/logentry-processors";
 import {groupByShortName} from "./processors/short-name-processors";
+
+import {maxGap} from "./stat-computers/max-gap";
+import {averageGap} from "./stat-computers/average-gap";
 
 // --- CONFIG ---
 // path to log file to use
@@ -32,7 +36,11 @@ function main():void
 
     var groupedLogs:LogRowsByShortName=groupByShortName(logEntries,_combineNames,_countThreshold);
 
-    console.log(groupedLogs["lapisrelights"]);
+    // --- TESTING ---
+    var testshow:LogRow[]=groupedLogs["oshigabudoukanittekuretarashinu"];
+    console.log("max",maxGap(testshow).as("days"));
+    console.log("average",averageGap(testshow).as("days"));
+    // --- END TESTING ---
 }
 
 main();

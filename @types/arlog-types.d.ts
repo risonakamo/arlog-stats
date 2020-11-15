@@ -8,7 +8,7 @@ interface LogRowExtracted
 // object item representing a log row.
 interface LogRow extends LogRowExtracted
 {
-    luxDate:import("luxon").DateTime
+    luxDate:DateTime
     shortName:string
 }
 
@@ -19,10 +19,10 @@ interface LogRowStats
     data:LogRow[]
     count:number
 
-    averageGap:number
-    longestGap:number
-    timeSinceLast:number
-    totalTime:number
+    averageGap:Duration
+    longestGap:Duration
+    timeSinceLast:Duration
+    totalTime:Duration
 }
 
 // log rows sorted by their short names
