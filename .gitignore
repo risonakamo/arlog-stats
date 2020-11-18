@@ -3,3 +3,5 @@ node_modules
 build
 testoutput.log
 out.log
+*_TEMP*
+*_TEST*

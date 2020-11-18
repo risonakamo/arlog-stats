@@ -42,3 +42,16 @@ interface ShowStats
 // stats for all shows of a log. key is shortname, value is the stats for
 // that short name.
 type LogStats=Record<string,ShowStats>
+
+// output version of ShowStats table
+interface ShowStatsWritable
+{
+    name:string
+    count:number
+
+    // all times in days
+    averageGap:number
+    longestGap:number
+    // timeSinceLast:number
+    totalTime:number
+}

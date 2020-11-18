@@ -28,10 +28,10 @@ export function longestGap(logs:LogRow[]):Duration
         return result;
     });
 
-    for (var x=0;x<gaps.length;x++)
-    {
-        console.log("gap",gaps[x].as("days"));
-    }
+    // for (var x=0;x<gaps.length;x++)
+    // {
+    //     console.log("gap",gaps[x].as("days"));
+    // }
 
     return _.maxBy(gaps,(x:Duration)=>{
         return x.as("days");

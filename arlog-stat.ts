@@ -4,6 +4,7 @@ import _ from "lodash";
 import {parseLogEntries} from "./processors/logentry-processors";
 import {groupByShortName} from "./processors/short-name-processors";
 import {computeStats} from "./stat-compute/compute-stats";
+import {logStatsCsvOut} from "./outputers/csv-output";
 
 // --- CONFIG ---
 // path to log file to use
@@ -31,6 +32,8 @@ function main():void
     var groupedLogs:LogRowsByShortName=groupByShortName(logEntries,_combineNames,_countThreshold);
 
     var stats:LogStats=computeStats(groupedLogs);
+
+    logStatsCsvOut(stats);
 }
 
 main();
