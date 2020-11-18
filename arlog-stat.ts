@@ -1,11 +1,9 @@
 import fs from "fs";
 import _ from "lodash";
-import {Duration} from "luxon";
 
 import {parseLogEntries} from "./processors/logentry-processors";
 import {groupByShortName} from "./processors/short-name-processors";
-
-import {averageGap,maxGap,longestGap} from "./stat-computers/gap-calc";
+import {computeStats} from "./stat-compute/compute-stats";
 
 // --- CONFIG ---
 // path to log file to use
@@ -32,12 +30,7 @@ function main():void
 
     var groupedLogs:LogRowsByShortName=groupByShortName(logEntries,_combineNames,_countThreshold);
 
-    // --- TESTING ---
-    var testshow:LogRow[]=groupedLogs["tsuujoukougekigazentaikougekidenikaikougekinookaasanwasukidesuka"];
-    console.log("duration",maxGap(testshow).as("days"));
-    console.log("average",averageGap(testshow).as("days"));
-    console.log("longest gap",longestGap(testshow).as("days"));
-    // --- END TESTING ---
+    var stats:LogStats=computeStats(groupedLogs);
 }
 
 main();

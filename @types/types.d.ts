@@ -31,12 +31,11 @@ type ActivatedShortNameMerge=Record<string,string>
 // stats associated.
 interface ShowStats
 {
-    data:LogRow[]
     count:number
 
     averageGap:Duration
     longestGap:Duration
-    timeSinceLast:Duration
+    // timeSinceLast:Duration
     totalTime:Duration
 }
 
