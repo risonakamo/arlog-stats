@@ -35,7 +35,7 @@ interface ShowStats
 
     averageGap:Duration
     longestGap:Duration
-    // timeSinceLast:Duration
+    timeSinceLast:Duration
     totalTime:Duration
 }
 
@@ -52,6 +52,6 @@ interface ShowStatsWritable
     // all times in days
     averageGap:number
     longestGap:number
-    // timeSinceLast:number
+    timeSinceLast:number
     totalTime:number
 }

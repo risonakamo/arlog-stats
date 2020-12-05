@@ -8,7 +8,7 @@ import {logStatsCsvOut} from "./outputers/csv-output";
 
 // --- CONFIG ---
 // path to log file to use
-const _targetFile:string="testlog.log";
+const _targetFile:string="testlog2.log";
 
 // shortnames to combine
 const _combineNames:ShortNameMerge={

@@ -18,7 +18,7 @@ export function averageGap(logs:LogRow[]):Duration
     return Duration.fromObject({days:averageDays});
 }
 
-// determine longest gap between entries of given log rows
+/**determine longest gap between entries of given log rows*/
 export function longestGap(logs:LogRow[]):Duration
 {
     var prevDate:DateTime=logs[0].luxDate;
@@ -36,4 +36,15 @@ export function longestGap(logs:LogRow[]):Duration
     return _.maxBy(gaps,(x:Duration)=>{
         return x.as("days");
     })!;
+}
+
+/**determine time between last log entry and the current time*/
+export function gapToToday(logs:LogRow[]):Duration
+{
+    if (!logs.length)
+    {
+        return Duration.fromMillis(0);
+    }
+
+    return _.last(logs)!.luxDate.diffNow().negate();
 }

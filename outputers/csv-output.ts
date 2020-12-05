@@ -30,7 +30,8 @@ function showStatsToWritable(stats:LogStats):ShowStatsWritable[]
 
             averageGap:x.averageGap.as("days"),
             longestGap:x.longestGap.as("days"),
-            totalTime:x.totalTime.as("days")
+            totalTime:x.totalTime.as("days"),
+            timeSinceLast:x.timeSinceLast.as("days")
         };
     });
 }

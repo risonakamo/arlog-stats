@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import {maxGap,averageGap,longestGap} from "./gap-calc";
+import {maxGap,averageGap,longestGap,gapToToday} from "./gap-calc";
 
 // convert logrowsbyshortname into log stats. converts each log rows for each show
 // into show stats for that show.
@@ -18,6 +18,7 @@ function computeStatsSingle(logs:LogRow[]):ShowStats
         count:logs.length,
         averageGap:averageGap(logs),
         longestGap:longestGap(logs),
-        totalTime:maxGap(logs)
+        totalTime:maxGap(logs),
+        timeSinceLast:gapToToday(logs)
     };
 }
